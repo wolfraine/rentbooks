@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Borrow Book</title>
+</head>
+<body>
+    <h1>Borrow Book</h1>
+    <form method="post">
+        <p>Book: {{ book.title }} by {{ book.author }}</p>
+        <label for="reader_id">Select Reader:</label>
+        <select name="reader_id">
+            {% for reader in readers %}
+                <option value="{{ reader.id }}">{{ reader.name }} {{ reader.surname }}</option>
+            {% endfor %}
+        </select>
+        <label for="return_date">Return Date:</label>
+        <input type="date" name="return_date" required>
+        <button type="submit">Borrow</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to home</a>
+</body>
+</html>

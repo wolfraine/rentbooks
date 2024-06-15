@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Books</h1>
+        <form method="post">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search" required>
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for book in books %}
+            <li>{{ book.title }} by {{ book.author }} -
+                {% if book.copies > 0 %}
+                    <a href="{{ url_for('borrow_book', book_id=book.id) }}">Borrow</a>
+                {% else %}
+                    Not Available
+                {% endif %}
+                <a href="{{ url_for('return_book', book_id=book.id) }}">Return</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

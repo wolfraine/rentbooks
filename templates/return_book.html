@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Return Book</title>
+</head>
+<body>
+    <h1>Return Book</h1>
+    <form method="post">
+        <p>Book: {{ book.title }} by {{ book.author }}</p>
+        <label for="reader_id">Select Reader:</label>
+        <select name="reader_id">
+            {% for reader in readers %}
+                <option value="{{ reader.id }}">{{ reader.name }} {{ reader.surname }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Return</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to home</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <p>Author: {{ book.author }}</p>
+        <p>ISBN: {{ book.isbn }}</p>
+        <p>Publisher: {{ book.publisher }}</p>
+        <p>Language: {{ book.language }}</p>
+        <p>Publish Date: {{ book.publish_date }}</p>
+        <p>Copies: {{ book.copies }}</p>
+        <p>Tags: {{ book.tags }}</p>
+        <img src="{{ book.image }}" alt="Book Image">
+        <a href="{{ url_for('edit_book', book_id=book.id) }}">Edit</a>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

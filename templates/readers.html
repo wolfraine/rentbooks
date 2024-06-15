@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Readers List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Readers List</h1>
+        <a href="{{ url_for('add_reader') }}">Add New Reader</a>
+        <ul>
+            {% for reader in readers %}
+            <li>{{ reader.name }} {{ reader.surname }} - <a href="{{ url_for('reader_details', reader_id=reader.id) }}">Details</a> | <a href="{{ url_for('edit_reader', reader_id=reader.id) }}">Edit</a> | <a href="{{ url_for('delete_reader', reader_id=reader.id) }}">Delete</a></li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Reader Details</title>
+</head>
+<body>
+    <h1>Reader Details</h1>
+    <p>Name: {{ reader.name }} {{ reader.surname }}</p>
+    <p>Address: {{ reader.address }}</p>
+    <p>Phone: {{ reader.phone }}</p>
+    <p>Email: {{ reader.email }}</p>
+    <h2>Currently Borrowed Books</h2>
+    <ul>
+        {% for rental in rentals %}
+        <li>{{ rental.title }} by {{ rental.author }} (Borrowed on: {{ rental.rental_date }})
+            <form method="post" action="{{ url_for('return_book', book_id=rental.book_id) }}">
+                <input type="hidden" name="reader_id" value="{{ reader.id }}">
+                <button type="submit">Return</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>Returned Books</h2>
+    <ul>
+        {% for returned in returns %}
+        <li>{{ returned.title }} by {{ returned.author }} (Borrowed on: {{ returned.rental_date }}, Returned on: {{ returned.return_date }})</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('readers') }}">Back to Readers</a>
+</body>
+</html>

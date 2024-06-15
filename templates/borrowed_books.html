@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Borrowed Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Borrowed Books</h1>
+        <ul>
+            {% for book in borrowed_books %}
+            <li>{{ book.title }} by {{ book.author }} (Borrowed by {{ book.name }} {{ book.surname }} on {{ book.rental_date }})</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
