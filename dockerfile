@@ -1,5 +1,23 @@
-FROM python:3.7.3-alpine
+# Use the official Python image from the Docker Hub
+FROM python:3.9
+
+# Set the working directory in the container
 WORKDIR /app
-COPY requirements.txt
-RUN pip install -r requirements.txt
-CMD ["python", "your_app.py"]
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Run init_db.py to initialize the database
+RUN python init_db.py
+
+# Define environment variable
+ENV FLASK_APP=app.py
+
+# Run app.py when the container launches
+CMD ["flask", "run", "--host=0.0.0.0"]

@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from app import get_db_connection  # Importujesz funkcję z lokalnego pakietu app
-from app import User  # Importujesz klasę User z lokalnego pakietu app
+import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
